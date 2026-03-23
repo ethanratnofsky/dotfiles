@@ -1,0 +1,25 @@
+{
+    "name": "git-commit",
+    "description": "Analyze the Git working tree, detect the project's commit message conventions, and create a well-structured local commit. Use this agent when the user wants to commit changes, write a commit message, or stage and commit files.",
+    "prompt": "file://./prompts/git-commit-prompt.md",
+    "tools": [
+      "read",
+      "shell"
+    ],
+    "allowedTools": [
+      "read"
+    ],
+    "resources": [
+      "file://CONTRIBUTING.md",
+      "file://.github/CONTRIBUTING.md",
+      "file://.bitbucket/CONTRIBUTING.md"
+    ],
+    "hooks": {
+      "agentSpawn": [
+        {
+          "command": "git status --short && echo '---' && git log --oneline --no-merges -5"
+        }
+      ]
+    },
+    "welcomeMessage": "Ready to commit. I'll analyze your changes, detect the project's commit conventions, and draft a message for your approval."
+  }
