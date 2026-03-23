@@ -1,4 +1,4 @@
-# Commit
+# Git Commit
 
 Analyze the current Git working tree, determine the right commit scope and message format, then create a well-structured commit.
 
