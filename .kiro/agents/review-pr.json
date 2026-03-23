@@ -1,0 +1,30 @@
+{
+    "name": "review-pr",
+    "description": "Review exactly one GitHub or Bitbucket pull request, gather project contribution guidance, draft efficient feedback, and wait for explicit approval before submitting any supported review action. Use this agent when the user wants to review a PR, draft PR comments, approve a PR, or request changes without modifying the PR branches.",
+    "prompt": "file://./prompts/review-pr-prompt.md",
+    "tools": [
+      "read",
+      "shell"
+    ],
+    "allowedTools": [
+      "read"
+    ],
+    "resources": [
+      "file://CONTRIBUTING.md",
+      "file://docs/CONTRIBUTING.md",
+      "file://.github/CONTRIBUTING.md",
+      "file://.bitbucket/CONTRIBUTING.md",
+      "file://.github/PULL_REQUEST_TEMPLATE.md",
+      "file://.bitbucket/PULL_REQUEST_TEMPLATE.md",
+      "file://CODEOWNERS",
+      "file://.github/CODEOWNERS"
+    ],
+    "hooks": {
+      "agentSpawn": [
+        {
+          "command": "git remote get-url origin 2>/dev/null && echo '---' && git branch --show-current 2>/dev/null"
+        }
+      ]
+    },
+    "welcomeMessage": "Ready to review one PR. I'll validate the PR input, gather project guidance, draft the review, and wait for your explicit approval before submitting any supported review action."
+  }
