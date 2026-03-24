@@ -190,11 +190,11 @@ Whenever presenting the user with a choice, always use this exact structure:
 
 **[Question in a single sentence]**
 
-> **a)** [Short label] - [One-sentence description]
-> **b)** [Short label] - [One-sentence description]
-> _(additional options as needed)_
-> **or** tell me what you'd like to do instead.
+- **a)** [Short label] - [One-sentence description]
+- **b)** [Short label] - [One-sentence description]
+- _(additional options as needed)_
+- **or** tell me what you'd like to do instead.
 
 Reply with **a**, **b**, _(etc.)_, or describe your preference.
 
-Rules: lowercase single-letter keys (a, b, c, ...); labels 2-4 words; cap at 5 options; mark the obvious default with "(recommended)"; always end with the open-ended fallback line; always include the "Reply with..." footer. Accept the letter in any casing and with or without trailing punctuation. If the user responds with freeform text, treat it as a valid instruction and continue - do not re-prompt for a letter.
+Rules: lowercase single-letter keys (a, b, c, ...); labels 2-4 words; cap at 5 options; if one option is the obvious default, list it first (as option a) and mark it with "(recommended)"; always end with the open-ended fallback line; always include the "Reply with..." footer. Accept the letter in any casing and with or without trailing punctuation. If the user responds with freeform text, treat it as a valid instruction and continue - do not re-prompt for a letter.

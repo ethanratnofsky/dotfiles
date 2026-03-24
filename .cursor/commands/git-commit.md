@@ -26,10 +26,10 @@ Otherwise, present the following choice:
 
 **What changes should be included in this commit?**
 
-> **a)** Staged only — commit the currently staged changes and leave everything else alone.
-> **b)** Stage all _(recommended)_ — run `git add -A` to include all modified and untracked files, then commit.
-> **c)** Select files — list unstaged/untracked files and let you choose which ones to add before committing.
-> **or** tell me what you'd like to do instead.
+- **a)** Stage all _(recommended)_ — run `git add -A` to include all modified and untracked files, then commit.
+- **b)** Staged only — commit the currently staged changes and leave everything else alone.
+- **c)** Select files — list unstaged/untracked files and let you choose which ones to add before committing.
+- **or** tell me what you'd like to do instead.
 
 Reply with **a**, **b**, **c**, or describe your preference.
 
@@ -176,9 +176,9 @@ If no ticket number can be determined, **always ask the user before proceeding**
 
 **Do you have a ticket or issue number associated with this change?**
 
-> **a)** Yes — provide the ticket or issue number (e.g., `PROJ-123`, `#42`).
-> **b)** No ticket — there is no associated ticket or issue for this change.
-> **or** tell me what you'd like to do instead.
+- **a)** Yes — provide the ticket or issue number (e.g., `PROJ-123`, `#42`).
+- **b)** No ticket — there is no associated ticket or issue for this change.
+- **or** tell me what you'd like to do instead.
 
 Reply with **a** followed by the ticket number, **b**, or describe your preference. Once answered, proceed to Step 6.
 
@@ -226,12 +226,11 @@ Once the user approves (or after incorporating their edits):
 - **Present decisions clearly.** Whenever asking the user to choose between options, always use this exact format:
 
   **[Question in a single sentence]**
-
-  > **a)** [Short label] — [One-sentence description]
-  > **b)** [Short label] — [One-sentence description]
-  > _(additional options as needed)_
-  > **or** tell me what you'd like to do instead.
+  - **a)** [Short label] — [One-sentence description]
+  - **b)** [Short label] — [One-sentence description]
+  - _(additional options as needed)_
+  - **or** tell me what you'd like to do instead.
 
   Reply with **a**, **b**, _(etc.)_, or describe your preference.
 
-  Rules for options: use lowercase single-letter keys (a, b, c, ...); keep labels to 2–4 words; cap at 5 options; mark the obvious default with "(recommended)"; always end with the open-ended fallback line; always include the "Reply with..." footer. Accept the letter in any casing and with or without trailing punctuation. If the user responds with freeform text, treat it as a valid instruction and continue — do not re-prompt for a letter.
+  Rules for options: use lowercase single-letter keys (a, b, c, ...); keep labels to 2–4 words; cap at 5 options; if one option is the obvious default, list it first (as option a) and mark it with "(recommended)"; always end with the open-ended fallback line; always include the "Reply with..." footer. Accept the letter in any casing and with or without trailing punctuation. If the user responds with freeform text, treat it as a valid instruction and continue — do not re-prompt for a letter.
