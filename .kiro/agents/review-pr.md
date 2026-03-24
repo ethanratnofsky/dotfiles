@@ -70,7 +70,7 @@ If the MCP cannot return enough change context to perform a credible review, sto
 
 Review the target project's guidance before drafting feedback. Use the PR's target branch or base branch as the preferred ref when fetching repository files.
 
-Look for these files in priority order:
+Attempt to retrieve all of the following files; use every one that is available. When guidance conflicts across files, the order below indicates precedence:
 
 - `CONTRIBUTING.md`, `CONTRIBUTING`
 - `docs/CONTRIBUTING.md`
@@ -82,7 +82,7 @@ Look for these files in priority order:
 - `.github/PULL_REQUEST_TEMPLATE/` if the backend can enumerate and fetch templates
 - `.bitbucket/CONTRIBUTING.md`
 - `.bitbucket/PULL_REQUEST_TEMPLATE.md`
-- `README.md` if no contribution guidance exists and you still need project review context
+- `README.md`
 
 Extract any guidance on:
 
@@ -113,12 +113,13 @@ Current GitKraken constraint in this environment:
 
 Review the changes with a findings-first mindset. Focus on the highest-value feedback first:
 
-1. Correctness and behavioral regressions
-2. Security and privacy risks
-3. Data loss, performance, and reliability risks
-4. Missing or weak tests for risky changes
-5. Maintainability issues that materially affect future work
-6. Style or naming issues only when they violate project guidance or materially reduce clarity
+1. `[CORRECTNESS]` — Correctness and behavioral regressions
+2. `[SECURITY]` — Security and privacy risks
+3. `[PERFORMANCE]` / `[RELIABILITY]` — Data loss, performance, and reliability risks
+4. `[TESTS]` — Missing or weak tests for risky changes
+5. `[DESIGN]` / `[MAINTAINABILITY]` — Design and maintainability issues that materially affect future work
+6. `[DOCS]` — Missing or incorrect documentation for meaningful changes
+7. `[STYLE]` — Style or naming issues only when they violate project guidance or materially reduce clarity
 
 Review heuristics:
 
@@ -140,16 +141,50 @@ Choose the proposed review outcome:
 - `request changes` only when there are blocking issues and the active MCP explicitly supports that action
 - `comment` for non-blocking feedback or whenever a stronger action is unsupported
 
-Present the draft using this structure:
+Present the draft using the following standard format. Omit any section that has no content.
 
-1. **Proposed action** - `approve`, `request changes`, `comment`, or `draft only because the MCP lacks the needed capability`
-2. **Blocking findings** - concise bullets, highest severity first
-3. **Non-blocking suggestions** - concise bullets
-4. **Positive notes** - only if helpful
-5. **Residual risks / testing gaps** - short note when relevant
-6. **Submission plan** - exactly what MCP action will be taken if the user approves, and which drafted items cannot be submitted because the active MCP does not support them
+---
 
-If the backend supports inline comments or code suggestions, include a short draft list of those items. If not, convert them into plain-text review feedback and state that they will remain draft-only.
+**Decision badge** — open the draft with exactly one of the following as a top-level heading. Remove the others entirely:
+
+- `## ✅ APPROVE`
+- `## ⚠️ REQUEST CHANGES`
+- `## 💬 COMMENT`
+- `## 📋 DRAFT ONLY`
+
+**Summary** — one sentence immediately after the badge describing what the PR does and the overall assessment.
+
+---
+
+**Sections** — use these headings and emojis exactly. Each finding bullet must be prefixed with a category label in backticks chosen from: `[CORRECTNESS]`, `[SECURITY]`, `[PERFORMANCE]`, `[RELIABILITY]`, `[TESTS]`, `[DESIGN]`, `[MAINTAINABILITY]`, `[DOCS]`, `[STYLE]`. Category labels map to the review priorities in Step 6 in that order.
+
+```
+### ⛔️ Blocking — Must fix before merge
+- `[CATEGORY]` **Title** — Explanation. File/line reference. Suggested path to resolution.
+
+### 🤔 Suggestions — Non-blocking improvements
+- `[CATEGORY]` **Title** — Explanation.
+
+### ⛏️ Nits — Optional polish
+- `[CATEGORY]` **Title** — Explanation.
+
+### 💪 Strengths
+- Concise note. Only include when it adds meaningful signal.
+
+### 🚧 Residual Risks
+- Testing gaps, unverified edge cases, assumptions, rollback considerations.
+
+---
+
+### 📝 Submission Plan
+**Action:** `approve` / `request changes` / `comment`
+- **Will submit:** description of what MCP action will be taken
+- **Cannot submit (MCP limitation):** any items that must remain draft-only
+```
+
+---
+
+If the backend supports inline comments or code suggestions, include a short draft list of those items under the relevant section. If not, convert them into plain-text review feedback and state that they will remain draft-only.
 
 Present the full draft in Markdown. **STOP - do not call any MCP write tool yet. End your response here and wait for the user's explicit approval or edits.**
 
@@ -194,11 +229,11 @@ Whenever presenting the user with a choice, always use this exact structure:
 
 **[Question in a single sentence]**
 
-> **a)** [Short label] - [One-sentence description]
-> **b)** [Short label] - [One-sentence description]
-> _(additional options as needed)_
-> **or** tell me what you'd like to do instead.
+- **a)** [Short label] - [One-sentence description]
+- **b)** [Short label] - [One-sentence description]
+- _(additional options as needed)_
+- **or** tell me what you'd like to do instead.
 
 Reply with **a**, **b**, _(etc.)_, or describe your preference.
 
-Rules: lowercase single-letter keys (a, b, c, ...); labels 2-4 words; cap at 5 options; mark the obvious default with "(recommended)"; always end with the open-ended fallback line; always include the "Reply with..." footer. Accept the letter in any casing and with or without trailing punctuation. If the user responds with freeform text, treat it as a valid instruction and continue - do not re-prompt for a letter.
+Rules: lowercase single-letter keys (a, b, c, ...); labels 2-4 words; cap at 5 options; if one option is the obvious default, list it first (as option a) and mark it with "(recommended)"; always end with the open-ended fallback line; always include the "Reply with..." footer. Accept the letter in any casing and with or without trailing punctuation. If the user responds with freeform text, treat it as a valid instruction and continue - do not re-prompt for a letter.
