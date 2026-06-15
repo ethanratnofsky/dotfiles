@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "model": "opus",
+  "effortLevel": "high",
+  "skipWorkflowUsageWarning": true,
+  "skipAutoPermissionPrompt": true,
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); if [ -n \"$f\" ]; then case \"$f\" in *.js|*.jsx|*.ts|*.tsx|*.json|*.css|*.scss|*.md|*.mdx|*.yaml|*.yml) cfg=$(npx --no-install prettier --find-config-path \"$f\" 2>/dev/null); if [ -n \"$cfg\" ]; then npx --no-install prettier --write \"$f\" >/dev/null 2>&1 || true; fi ;; esac; fi"
+          }
+        ]
+      }
+    ]
+  }
+}

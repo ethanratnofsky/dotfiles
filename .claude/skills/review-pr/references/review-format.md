@@ -23,6 +23,8 @@ Use these headings exactly. Each finding bullet must be prefixed with a category
 
 Category labels map to the review priorities (Step 6) in the order listed there.
 
+Anchor findings to a `file:line` reference whenever one applies, so they can be posted as inline comments by backends that support them (see Guidelines).
+
 ```
 ### Blocking — Must fix before merge
 - `[CATEGORY]` **Title** — Explanation. File/line reference. Suggested path to resolution.
@@ -44,6 +46,7 @@ Category labels map to the review priorities (Step 6) in the order listed there.
 ### Submission Plan
 **Action:** `approve` / `request changes` / `comment`
 - **Will submit:** description of what action will be taken
+- **Inline comments:** file/line-anchored findings that will be posted inline (when the backend supports them)
 - **Cannot submit (backend limitation):** any items that must remain draft-only
 ```
 
@@ -51,5 +54,5 @@ Category labels map to the review priorities (Step 6) in the order listed there.
 
 - Omit any section that has no findings.
 - Keep each bullet concise and actionable.
-- If inline file-level comments are supported by the backend, include a short draft list of those items under the relevant section. If not, convert them into plain-text review feedback and note that they will remain draft-only.
+- Inline file-level comments are supported by the available backends — GitHub via `gh api`, and the Bitbucket MCP backend via `create_pull_request_comment` with `file_path` (and optional `line`). Post file/line-anchored findings as inline comments rather than burying them in the review body, and list them under **Inline comments** in the Submission Plan. Only convert a finding to plain-text review feedback (noted as draft-only) when it has no specific file/line anchor or the backend genuinely cannot post it.
 - The Submission Plan section ALWAYS appears last and summarizes what will actually be sent to the PR platform versus what remains as local draft text.

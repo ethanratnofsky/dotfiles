@@ -1,0 +1,7 @@
+# Filled-in Claude config with machine-specific secrets — use .claude/settings.json.template instead
+.claude/settings.json
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*~
