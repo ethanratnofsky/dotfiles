@@ -12,7 +12,6 @@ Cross-project notes that apply in every repo. A specific project's `CLAUDE.md` o
 
 ### Workflow
 - **Ask clarifying questions before assuming.** Surface ambiguous requirements and edge cases before implementing, not after.
-- **I verify UIs manually.** Don't start the dev server or use browser/preview tools to test UI changes — just make the change; I'll verify.
 - **Commits:** single-line conventional-commit subject; never add a `Co-Authored-By` or Claude attribution trailer.
 
 ### Code quality & style
